@@ -272,19 +272,21 @@ class _MyHomePageState extends State<MyHomePage> {
       Container(
 //        color:Colors.green,
         height:180,
+        decoration: BoxDecoration(
+          border: Border.all(
+
+            color: Colors.black,
+            style: BorderStyle.solid,
+            width: 1.0,
+
+          ),
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(35.0),
+
+        ),
 
 //        margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
         width:  displayWidth(context) / 2,
-        child:
-        DottedBorder(
-          dashPattern: [9, 6,],
-          color: Colors.black,
-          strokeWidth: 3.6,
-          borderType: BorderType.RRect,
-          radius: Radius.circular(35),
-//          strokeCap:StrokeCap.butt,
-//        strokeCap: StrokeCap.round,
-//          strokeCap: StrokeCap.square,
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -296,47 +298,30 @@ class _MyHomePageState extends State<MyHomePage> {
               //rounded rectangle border and text conted inside it begins here.
 
 
-              DottedBorder(
-//                dashPattern: [6, 3,2, 3],
-                dashPattern: [9, 6,],
-                customPath: (size) => customPath3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-
                     Container(
                       height: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <
-                            Widget>[
-                          //  SizedBox(width: 5,),
+                      child:
                           Container(
                             padding: EdgeInsets.fromLTRB(0,3,0,0),
                             child: Text(
-                              'paid',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-//                            fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-//                          color: Color(0xffF50303),
-                                fontSize: 22, fontFamily: 'Itim-Regular',),
+                                'FoodItemName'.toLowerCase(),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.normal,
+//                                                      color: Colors.white
+                                  color: Colors
+                                      .black,
+                                  fontFamily: 'Itim-Regular',
+
+                                )
                             ),
                           ),
-                          Text(
-                            'delivery',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-//                          fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-//                        color: Color(0xffF50303),
-                              fontSize: 22, fontFamily: 'Itim-Regular',),
-                          ),
-                        ],
+
+
                       ),
-                    ),
+
 
                     // 1st row ends here.
 
@@ -374,9 +359,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
+
 
               /*
               DottedBorder(
@@ -454,7 +437,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ],
           ),
-        ),
+
       ),
     );
 
@@ -838,7 +821,8 @@ class _MyHomePageState extends State<MyHomePage> {
 //                      onPressed:()=> createImageFromWidget(paidDelivery),
 //                      onPressed:()=> createImageFromWidget(subTotalTotalDeliveryCost),
 
-                      onPressed:()=> createImageFromWidget(unPaidDinningRoom),
+//                      onPressed:()=> createImageFromWidget(unPaidDinningRoom),
+                      onPressed:()=> createImageFromWidget(companyNameCustomerInformation),
 
                     );
                   }
