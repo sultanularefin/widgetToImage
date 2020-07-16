@@ -2,7 +2,7 @@ import 'dart:async';
 
 //import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/material.dart';
-
+import 'package:dotted_border/dotted_border.dart';
 
 /* classes added */
 import 'dart:convert';
@@ -83,10 +83,51 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+
+  Size displaySize(BuildContext context) {
+//  debugPrint('Size = ' + MediaQuery.of(context).size.toString());
+    return MediaQuery.of(context).size;
+  }
+
+  double displayHeight(BuildContext context) {
+//  debugPrint('Height = ' + displaySize(context).height.toString());
+    return displaySize(context).height;
+  }
+
+  double displayWidth(BuildContext context) {
+//  debugPrint('Width = ' + displaySize(context).width.toString());
+    return displaySize(context).width;
+
+//  I/flutter ( 5454): Width = 800.0
+//  I/flutter ( 5454): Height = 1232.0
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
-    Widget widget= new  Directionality(
+    Path customPath = Path()
+      ..moveTo(20, 20)
+      ..lineTo(50, 100)
+      ..lineTo(20, 200)
+      ..lineTo(100, 100)
+      ..lineTo(20, 20);
+
+    Path customPath2 = Path()
+//    final p1 = Offset(50, 20);
+//    final p2 = Offset(5, 20);
+      ..moveTo(30, 20)
+      ..lineTo(0, 20);
+
+    Path customPath3 = Path()
+//    final p1 = Offset(50, 20);
+//    final p2 = Offset(5, 20);
+      ..moveTo(displayWidth(context)/2, 120)
+      ..lineTo(0, 120);
+
+
+
+    Widget firstTest= new  Directionality(
       textDirection: TextDirection.rtl,
       child:
       Container(
@@ -112,13 +153,644 @@ class _MyHomePageState extends State<MyHomePage> {
           Icons.phone_in_talk,
 //        FontAwesomeIcons.bookmark,
           color: Color(0xffFC0000),
-          size: 40,
+          size:60,
 
         ),
 
 
       ),
     );
+
+
+    Widget paidDelivery = new  Directionality(
+      textDirection: TextDirection.ltr,
+      child:
+      Container(
+        color:Colors.yellow,
+        width:  displayWidth(context) / 2,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+
+//            color:Colors.yellow,
+
+//            color:Colors.yellowAccent,
+              height: 100,
+
+              decoration: BoxDecoration(
+                border: Border.all(
+
+                  color: Colors.black,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+
+                ),
+                shape: BoxShape.circle,
+                color: Colors.black,
+
+
+              ),
+
+              child: Icon(
+//        getIconForName(orderTypeName),
+//        IconData:
+                Icons.thumb_up,
+//        FontAwesomeIcons.bookmark,
+                color: Colors.white,
+                size: 80,
+
+              ),
+
+
+            ),
+
+            //rounded rectangle border and text conted inside it begins here.
+
+
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  style: BorderStyle.solid,
+                  width: 3.6,
+                ),
+//                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(35.0),
+//                    color: Colors.black,
+
+              ),
+
+              width:displayWidth(context)/3,
+              height: 50,
+              padding: EdgeInsets.fromLTRB(0,0,0,0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <
+                    Widget>[
+                  //  SizedBox(width: 5,),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0,3,0,0),
+                    child: Text(
+                      'paid',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+//                          color: Color(0xffF50303),
+                        fontSize: 22, fontFamily: 'Itim-Regular',),
+                    ),
+                  ),
+                  Text(
+                    'delivery',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+//                        color: Color(0xffF50303),
+                      fontSize: 22, fontFamily: 'Itim-Regular',),
+                  ),
+                ],
+              ),
+            ),
+
+            //rounded rectangle border and text conted inside it ends here.
+
+
+          ],
+        ),
+      ),
+    );
+
+    Widget companyNameCustomerInformation = new  Directionality(
+
+      textDirection: TextDirection.ltr,
+      child:
+      Container(
+//        color:Colors.green,
+        height:180,
+
+//        margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
+        width:  displayWidth(context) / 2,
+        child:
+        DottedBorder(
+          dashPattern: [9, 6,],
+          color: Colors.black,
+          strokeWidth: 3.6,
+          borderType: BorderType.RRect,
+          radius: Radius.circular(35),
+//          strokeCap:StrokeCap.butt,
+//        strokeCap: StrokeCap.round,
+//          strokeCap: StrokeCap.square,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+
+
+
+              //rounded rectangle border and text conted inside it begins here.
+
+
+              DottedBorder(
+//                dashPattern: [6, 3,2, 3],
+                dashPattern: [9, 6,],
+                customPath: (size) => customPath3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+
+                    Container(
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <
+                            Widget>[
+                          //  SizedBox(width: 5,),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0,3,0,0),
+                            child: Text(
+                              'paid',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+//                            fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+//                          color: Color(0xffF50303),
+                                fontSize: 22, fontFamily: 'Itim-Regular',),
+                            ),
+                          ),
+                          Text(
+                            'delivery',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+//                          fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+//                        color: Color(0xffF50303),
+                              fontSize: 22, fontFamily: 'Itim-Regular',),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // 1st row ends here.
+
+
+                    Container(
+                      height: 50,
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <
+                            Widget>[
+                          //  SizedBox(width: 5,),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0,3,0,0),
+                            child: Text(
+                              'paid',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+//                        fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+//                          color: Color(0xffF50303),
+                                fontSize: 22, fontFamily: 'Itim-Regular',),
+                            ),
+                          ),
+                          Text(
+                            'delivery',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+//                      fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+//                        color: Color(0xffF50303),
+                              fontSize: 22, fontFamily: 'Itim-Regular',),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /*
+              DottedBorder(
+//                dashPattern: [6, 3,2, 3],
+                dashPattern: [9, 6,],
+                customPath: (size) => customPath2,
+                child: Text('abc',style:TextStyle(
+                  color:Colors.indigo,
+                )
+                  ,),
+              ),
+
+              */
+              /*
+              DottedBorder(
+                customPath: (size) => customPath, // PathBuilder
+                color: Colors.indigo,
+                dashPattern: [8, 4],
+                strokeWidth: 2,
+                child: Container(
+                  height: 220,
+                  width: 120,
+                  color: Colors.green.withAlpha(20),
+                ),
+              ),
+
+*/
+
+//              DottedBorder(
+//              child:StrokeCap.Butt),
+
+
+              //2nd row ends here.
+
+
+              Container(
+                height: 50,
+                padding: EdgeInsets.fromLTRB(0,0,0,0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <
+                      Widget>[
+                    //  SizedBox(width: 5,),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(0,3,0,0),
+                      child: Text(
+                        'paid',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+//                          color: Color(0xffF50303),
+                          fontSize: 22, fontFamily: 'Itim-Regular',),
+                      ),
+                    ),
+                    Text(
+                      'delivery',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+//                        color: Color(0xffF50303),
+                        fontSize: 22, fontFamily: 'Itim-Regular',),
+                    ),
+                  ],
+                ),
+              ),
+
+              // total ends here.
+
+
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+
+    Widget subTotalTotalDeliveryCost = new  Directionality(
+
+      textDirection: TextDirection.ltr,
+      child:
+      Container(
+//        color:Colors.green,
+        height:180,
+
+//        margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
+        width:  displayWidth(context) / 2,
+        child:
+        DottedBorder(
+          dashPattern: [9, 6,],
+          color: Colors.black,
+          strokeWidth: 3.6,
+          borderType: BorderType.RRect,
+          radius: Radius.circular(35),
+//          strokeCap:StrokeCap.butt,
+//        strokeCap: StrokeCap.round,
+//          strokeCap: StrokeCap.square,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+
+
+
+              //rounded rectangle border and text conted inside it begins here.
+
+
+              DottedBorder(
+//                dashPattern: [6, 3,2, 3],
+                dashPattern: [9, 6,],
+                customPath: (size) => customPath3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+
+                    Container(
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <
+                            Widget>[
+                          //  SizedBox(width: 5,),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0,3,0,0),
+                            child: Text(
+                              'paid',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+//                            fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+//                          color: Color(0xffF50303),
+                                fontSize: 22, fontFamily: 'Itim-Regular',),
+                            ),
+                          ),
+                          Text(
+                            'delivery',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+//                          fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+//                        color: Color(0xffF50303),
+                              fontSize: 22, fontFamily: 'Itim-Regular',),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    // 1st row ends here.
+
+
+                    Container(
+                      height: 50,
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <
+                            Widget>[
+                          //  SizedBox(width: 5,),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(0,3,0,0),
+                            child: Text(
+                              'paid',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+//                        fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+//                          color: Color(0xffF50303),
+                                fontSize: 22, fontFamily: 'Itim-Regular',),
+                            ),
+                          ),
+                          Text(
+                            'delivery',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+//                      fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+//                        color: Color(0xffF50303),
+                              fontSize: 22, fontFamily: 'Itim-Regular',),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /*
+              DottedBorder(
+//                dashPattern: [6, 3,2, 3],
+                dashPattern: [9, 6,],
+                customPath: (size) => customPath2,
+                child: Text('abc',style:TextStyle(
+                  color:Colors.indigo,
+                )
+                  ,),
+              ),
+
+              */
+              /*
+              DottedBorder(
+                customPath: (size) => customPath, // PathBuilder
+                color: Colors.indigo,
+                dashPattern: [8, 4],
+                strokeWidth: 2,
+                child: Container(
+                  height: 220,
+                  width: 120,
+                  color: Colors.green.withAlpha(20),
+                ),
+              ),
+
+*/
+
+//              DottedBorder(
+//              child:StrokeCap.Butt),
+
+
+              //2nd row ends here.
+
+
+              Container(
+                height: 50,
+                padding: EdgeInsets.fromLTRB(0,0,0,0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <
+                      Widget>[
+                    //  SizedBox(width: 5,),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(0,3,0,0),
+                      child: Text(
+                        'paid',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+//                          color: Color(0xffF50303),
+                          fontSize: 22, fontFamily: 'Itim-Regular',),
+                      ),
+                    ),
+                    Text(
+                      'delivery',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+//                        color: Color(0xffF50303),
+                        fontSize: 22, fontFamily: 'Itim-Regular',),
+                    ),
+                  ],
+                ),
+              ),
+
+              // total ends here.
+
+
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
+
+
+
+    Widget unPaidDinningRoom = new  Directionality(
+      textDirection: TextDirection.ltr,
+      child:
+      Container(
+        color:Colors.blue,
+        width:  displayWidth(context) / 1.8,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+
+//            color:Colors.yellow,
+
+//            color:Colors.yellowAccent,
+              height:55,
+              width:55,
+
+              decoration: BoxDecoration(
+                border: Border.all(
+
+                  color: Colors.black,
+                  style: BorderStyle.solid,
+                  width: 1.0,
+
+                ),
+                shape: BoxShape.circle,
+                color: Colors.black,
+
+
+              ),
+
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,5,5),
+                child: Icon(
+//        getIconForName(orderTypeName),
+//        IconData:
+                  Icons.pan_tool,
+//        FontAwesomeIcons.bookmark,
+                  color: Colors.white,
+                  size:40,
+
+                ),
+              ),
+
+
+            ),
+
+            //rounded rectangle border and text conted inside it begins here.
+
+
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  style: BorderStyle.solid,
+                  width: 3.6,
+                ),
+//                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(35.0),
+//                    color: Colors.black,
+
+              ),
+
+              width:displayWidth(context)/3,
+              height: 50,
+              padding: EdgeInsets.fromLTRB(0,0,0,0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <
+                    Widget>[
+                  //  SizedBox(width: 5,),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0,3,0,0),
+                    child: Text(
+                      'unpaid',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+//                          color: Color(0xffF50303),
+                        fontSize: 22, fontFamily: 'Itim-Regular',),
+                    ),
+                  ),
+                  Text(
+                    'dinning room',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+//                        color: Color(0xffF50303),
+                      fontSize: 22, fontFamily: 'Itim-Regular',),
+                  ),
+                ],
+              ),
+            ),
+
+            Container(
+
+//            color:Colors.yellow,
+
+//            color:Colors.yellowAccent,
+              height:55,
+              width:55,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+//                  style: BorderStyle.solid,
+                  width: 1.0,
+                ),
+                shape: BoxShape.circle,
+                color: Colors.black,
+              ),
+
+              child: Icon(
+//        getIconForName(orderTypeName),
+//        IconData:
+                Icons.local_dining,
+//        FontAwesomeIcons.bookmark,
+                color: Colors.white,
+                size:40,
+
+              ),
+
+
+            ),
+
+            //rounded rectangle border and text conted inside it ends here.
+
+
+          ],
+        ),
+      ),
+    );
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Widget To Image demo'),
@@ -162,7 +834,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text('capture Image'),
 //              onPressed: _capturePng,
 //                      onPressed: createImageFromWidget,
-                      onPressed:()=> createImageFromWidget(widget),
+//                      onPressed:()=> createImageFromWidget(firstTest),
+//                      onPressed:()=> createImageFromWidget(paidDelivery),
+//                      onPressed:()=> createImageFromWidget(subTotalTotalDeliveryCost),
+
+                      onPressed:()=> createImageFromWidget(unPaidDinningRoom),
+
                     );
                   }
 
